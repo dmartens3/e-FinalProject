@@ -1,9 +1,11 @@
 <nav class="flex flex-col w-full">
-  <div class="h-40 p-4 bg-purple-600 sticky top-0">
+  <div class="h-40 p-4 bg-purple-600 shadow sticky top-0">
       <div class="flex pl-6">
-          <h1 class="text-lg py-2 text-white font-bold hidden md:block">Crazy Computers Store Admin </h1>
+          <h1 class="text-4xl py-2 text-white font-bold shadow hidden md:block">
+            Crazy Computers
+          </h1>
       </div>
-      <ul class="flex flex-row text-white pl-6">
+      <ul class="flex flex-row text-white pl-6 justify-end">
           <li class="border rounded mr-4">
               <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                   <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="hidden md:inline-block">Admin Home</span>
