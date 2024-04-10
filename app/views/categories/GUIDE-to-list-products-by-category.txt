@@ -1,0 +1,43 @@
+Define a Route:
+In your config/routes.rb file, define a route to handle the redirection. You can use a route parameter to capture the category ID or slug.
+
+# config/routes.rb
+get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
+
+
+
+Create a Controller Action:
+In your ProductsController, define a new action (show_by_category) to fetch products based on the selected category.
+
+# app/controllers/products_controller.rb
+class ProductsController < ApplicationController
+  def show_by_category
+    @category = Category.find(params[:category_id])
+    @products = @category.products
+  end
+end
+
+
+
+Set up a View:
+Create a view file to display the list of products for the selected category.
+
+<!-- app/views/products/show_by_category.html.erb -->
+<h1>Products in <%= @category.name %> Category</h1>
+<% @products.each do |product| %>
+  <div>
+    <h2><%= product.name %></h2>
+    <p><%= product.description %></p>
+    <!-- Add other product details as needed -->
+  </div>
+<% end %>
+
+
+
+Link to the Category:
+In your view where you display categories (e.g., sidebar, navigation), create links to redirect users to the list of products for each category.
+
+<!-- Example: app/views/categories/index.html.erb -->
+<% @categories.each do |category| %>
+  <%= link_to category.name, products_by_category_path(category) %>
+<% end %>
