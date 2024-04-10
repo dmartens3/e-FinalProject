@@ -6,46 +6,75 @@
           </h1>
       </div>
       <ul class="flex flex-row text-white pl-6 justify-end">
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="hidden md:inline-block">Admin Home</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'laptop', class: 'mr-1') %> <span class="hidden md:inline-block">Products</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'folder-open', class: 'mr-1') %> <span class="hidden md:inline-block">Categories</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'address-book', class: 'mr-1') %> <span class="hidden md:inline-block">Customers</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'shopping-bag', class: 'mr-1') %> <span class="hidden md:inline-block">Orders</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'phone-square', class: 'mr-1') %> <span class="hidden md:inline-block">Edit Contact Page</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'info-circle', class: 'mr-1') %> <span class="hidden md:inline-block">Edit About Page</span>
-              <% end %>
-          </li>
-          <li class="border rounded mr-4">
-              <%= link_to home_admin_path, method: :delete, data: { turbo_method: :delete }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                  <%= icon('fa-solid', 'ban', class: 'mr-1') %> <span class="hidden md:inline-block">Sign Out</span>
-              <% end %>
-          </li>
+          <% if admin_signed_in? %>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="hidden md:inline-block">Admin Home</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'laptop', class: 'mr-1') %> <span class="hidden md:inline-block">Products</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'folder-open', class: 'mr-1') %> <span class="hidden md:inline-block">Categories</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'shopping-bag', class: 'mr-1') %> <span class="hidden md:inline-block">Orders</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'phone-square', class: 'mr-1') %> <span class="hidden md:inline-block">Edit Contact Page</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'info-circle', class: 'mr-1') %> <span class="hidden md:inline-block">Edit About Page</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to destroy_admin_session_path, method: :delete, data: { turbo_method: :delete }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'ban', class: 'mr-1') %> <span class="hidden md:inline-block">Sign Out</span>
+                  <% end %>
+              </li>
+          <% elsif user_signed_in? %>
+              <li class="border rounded mr-4">
+                  <%= link_to home_user_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="hidden md:inline-block">Home</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'laptop', class: 'mr-1') %> <span class="hidden md:inline-block">Products</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'folder-open', class: 'mr-1') %> <span class="hidden md:inline-block">Categories</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'ban', class: 'mr-1') %> <span class="hidden md:inline-block">Sign Out</span>
+                  <% end %>
+              </li>
+          <% else %>
+              <li class="border rounded mr-4">
+                  <%= link_to new_user_session_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'user-circle', class: 'mr-1') %> <span class="hidden md:inline-block">Sign In</span>
+                  <% end %>
+              </li>
+              <li class="border rounded mr-4">
+                  <%= link_to new_admin_session_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'vcard', class: 'mr-1') %> <span class="hidden md:inline-block">Admin Sign In</span>
+                  <% end %>
+              </li>
+          <% end %>
       </ul>
   </div>
 </nav>
