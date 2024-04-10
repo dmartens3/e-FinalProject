@@ -1,9 +1,9 @@
 <nav class="flex flex-col w-full">
   <div class="h-40 p-4 bg-purple-600 shadow sticky top-0">
       <div class="flex pl-6">
-          <h1 class="text-4xl py-2 text-white font-bold shadow hidden md:block">
-            Crazy Computers
-          </h1>
+          <%= link_to root_path, class: "text-4xl py-2 text-white font-bold shadow hidden md:block" do %>
+              <span class="hidden md:inline-block">Crazy Computers</span>
+          <% end %>
       </div>
       <ul class="flex flex-row text-white pl-6 justify-end">
           <% if admin_signed_in? %>
