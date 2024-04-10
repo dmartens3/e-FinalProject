@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :provinces
   resources :categories
 
   devise_for :admins, controllers: {

@@ -1,0 +1,32 @@
+<div id="<%= dom_id province %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= province.name %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Code:</strong>
+    <%= province.code %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Gst:</strong>
+    <%= province.gst %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Pst:</strong>
+    <%= province.pst %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Hst:</strong>
+    <%= province.hst %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this province", province, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this province", edit_province_path(province), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>
