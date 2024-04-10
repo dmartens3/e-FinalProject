@@ -1,4 +1,11 @@
-Prefix Verb   URI Pattern                                                                                       Controller#Action
+                              categories GET    /categories(.:format)                                                                             categories#index
+                                         POST   /categories(.:format)                                                                             categories#create
+                            new_category GET    /categories/new(.:format)                                                                         categories#new
+                           edit_category GET    /categories/:id/edit(.:format)                                                                    categories#edit
+                                category GET    /categories/:id(.:format)                                                                         categories#show
+                                         PATCH  /categories/:id(.:format)                                                                         categories#update
+                                         PUT    /categories/:id(.:format)                                                                         categories#update
+                                         DELETE /categories/:id(.:format)                                                                         categories#destroy
                        new_admin_session GET    /admins/sign_in(.:format)                                                                         admin/sessions#new
                            admin_session POST   /admins/sign_in(.:format)                                                                         admin/sessions#create
                    destroy_admin_session DELETE /admins/sign_out(.:format)                                                                        admin/sessions#destroy
@@ -22,13 +29,13 @@ Prefix Verb   URI Pattern                                                       
                            user_password PATCH  /users/password(.:format)                                                                         devise/passwords#update
                                          PUT    /users/password(.:format)                                                                         devise/passwords#update
                                          POST   /users/password(.:format)                                                                         devise/passwords#create
-                cancel_user_registration GET    /users/cancel(.:format)                                                                           devise/registrations#cancel
-                   new_user_registration GET    /users/sign_up(.:format)                                                                          devise/registrations#new
-                  edit_user_registration GET    /users/edit(.:format)                                                                             devise/registrations#edit
-                       user_registration PATCH  /users(.:format)                                                                                  devise/registrations#update
-                                         PUT    /users(.:format)                                                                                  devise/registrations#update
-                                         DELETE /users(.:format)                                                                                  devise/registrations#destroy
-                                         POST   /users(.:format)                                                                                  devise/registrations#create
+                cancel_user_registration GET    /users/cancel(.:format)                                                                           user/registrations#cancel
+                   new_user_registration GET    /users/sign_up(.:format)                                                                          user/registrations#new
+                  edit_user_registration GET    /users/edit(.:format)                                                                             user/registrations#edit
+                       user_registration PATCH  /users(.:format)                                                                                  user/registrations#update
+                                         PUT    /users(.:format)                                                                                  user/registrations#update
+                                         DELETE /users(.:format)                                                                                  user/registrations#destroy
+                                         POST   /users(.:format)                                                                                  user/registrations#create
                               home_index GET    /home/index(.:format)                                                                             home#index
                               home_admin GET    /home/admin(.:format)                                                                             home#admin
                                home_user GET    /home/user(.:format)                                                                              home#user
