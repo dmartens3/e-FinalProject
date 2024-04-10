@@ -33,22 +33,22 @@
 
   <div class="field">
     <%= f.label :address %><br />
-    <%= f.text_field :address, autocomplete: "address" %>
+    <%= f.text_field :address, autocomplete: "email" %>
   </div>
 
   <div class="field">
     <%= f.label :city %><br />
-    <%= f.text_field :city, autocomplete: "city" %>
+    <%= f.text_field :city, autocomplete: "email" %>
   </div>
 
   <div class="field">
-    <%= f.label :province %><br />
-    <%= f.text_field :province, autocomplete: "province" %>
+    <%= f.label :province_id %><br />
+    <%= f.collection_select :province_id, Province.order(:name), :id, :name, id: "province" %>
   </div>
 
   <div class="field">
     <%= f.label :postal_code %><br />
-    <%= f.text_field :postal_code, autocomplete: "postal_code" %>
+    <%= f.text_field :postal_code, autocomplete: "email" %>
   </div>
 
   <div class="actions">

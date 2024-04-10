@@ -32,8 +32,8 @@
   </div>
 
   <div class="field">
-    <%= f.label :province %><br />
-    <%= f.text_field :province, autocomplete: "email" %>
+    <%= f.label :province_id %><br />
+    <%= f.collection_select :province_id, Province.order(:name), :id, :name, id: "province" %>
   </div>
 
   <div class="field">
