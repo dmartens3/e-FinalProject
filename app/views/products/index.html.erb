@@ -8,13 +8,21 @@
     <table class="text-left">
       <thead>
         <tr class="bg-green-200">
+          <th class="p-2"></th>
           <th class="p-2">Name:</th>
+          <th class="p-2">Price:</th>
+          <th class="p-2">Category:</th>
+          <th class="p-2">Description:</th>
         </tr>
       </thead>
       <tbody>
         <% @products.each do |product| %>
         <tr class="even:bg-blue-100 hover:bg-gray-200">
+          <td class="p-2"><%= link_to "IMAGE", edit_product_path(product) %></td>
           <td class="p-2"><%= link_to product.name, edit_product_path(product) %></td>
+          <td class="p-2"><%= link_to product.price, edit_product_path(product) %></td>
+          <td class="p-2"><%= link_to product.category.name, edit_product_path(product) %></td>
+          <td class="p-2"><%= link_to product.description, edit_product_path(product) %></td>
         </tr>
         <% end %>
       </tbody>
