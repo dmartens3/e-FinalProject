@@ -1,0 +1,39 @@
+<div class="w-full m-5">
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Products</h1>
+    <% if admin_signed_in? %>
+      <%= link_to "New product", new_product_path, class: "rounded-lg mr-10 py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
+  </div>
+
+  <div>
+    <table class="text-left">
+      <thead>
+        <tr class="bg-green-200">
+          <th class="p-2"></th>
+          <th class="p-2">Name:</th>
+          <th class="p-2">Price:</th>
+          <th class="p-2">Category:</th>
+          <th class="p-2">Description:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @products.each do |product| %>
+        <tr class="even:bg-blue-100 hover:bg-gray-200">
+          <td class="p-2 h-24 w-24 shrink-0"><%= product.images.any? ? image_tag(product.images.first.variant(:thumb)) : 'Missing image!' %></td>
+          <td class="p-2"><%= link_to product.name, product_path(product) %></td>
+          <td class="p-2">$<%= link_to product.price, product_path(product) %></td>
+          <td class="p-2"><%= link_to product.category.name, product_path(product) %></td>
+          <td class="p-2">
+            <% if product.description.length > 200 %>
+              <%= link_to product.description[0,200], product_path(product) %>...
+            <% else %>
+              <%= link_to product.description, product_path(product) %>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

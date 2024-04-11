@@ -1,5 +1,5 @@
-<nav class="flex flex-col w-full">
-  <div class="h-40 p-4 bg-purple-600 sticky top-0">
+<nav class="flex flex-col w-full sticky">
+  <div class="h-40 p-4 bg-purple-600 top-0">
       <div class="flex pl-6">
           <%= link_to root_path, class: "text-4xl py-2 text-white font-bold hidden md:block" do %>
               <span class="md:inline-block">Crazy Computers</span>
@@ -13,7 +13,7 @@
                   <% end %>
               </li>
               <li class="shadow border rounded mr-4">
-                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                  <%= link_to products_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'laptop', class: 'mr-1') %> <span class="hidden md:inline-block">Products</span>
                   <% end %>
               </li>
@@ -54,12 +54,12 @@
                   <% end %>
               </li>
               <li class="shadow border rounded mr-4">
-                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                  <%= link_to products_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'laptop', class: 'mr-1') %> <span class="hidden md:inline-block">Products</span>
                   <% end %>
               </li>
               <li class="shadow border rounded mr-4">
-                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                  <%= link_to categories_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'folder-open', class: 'mr-1') %> <span class="hidden md:inline-block">Categories</span>
                   <% end %>
               </li>
