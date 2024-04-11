@@ -21,14 +21,14 @@
         <% @products.each do |product| %>
         <tr class="even:bg-blue-100 hover:bg-gray-200">
           <td class="p-2 h-24 w-24 shrink-0"><%= product.images.any? ? image_tag(product.images.first.variant(:thumb)) : 'Missing image!' %></td>
-          <td class="p-2"><%= link_to product.name, edit_product_path(product) %></td>
-          <td class="p-2">$<%= link_to product.price, edit_product_path(product) %></td>
-          <td class="p-2"><%= link_to product.category.name, edit_product_path(product) %></td>
+          <td class="p-2"><%= link_to product.name, product_path(product) %></td>
+          <td class="p-2">$<%= link_to product.price, product_path(product) %></td>
+          <td class="p-2"><%= link_to product.category.name, product_path(product) %></td>
           <td class="p-2">
             <% if product.description.length > 200 %>
-              <%= link_to product.description[0,200], edit_product_path(product) %>...
+              <%= link_to product.description[0,200], product_path(product) %>...
             <% else %>
-              <%= link_to product.description, edit_product_path(product) %>
+              <%= link_to product.description, product_path(product) %>
             <% end %>
           </td>
         </tr>

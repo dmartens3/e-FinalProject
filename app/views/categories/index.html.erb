@@ -16,7 +16,7 @@
       <tbody>
         <% @categories.each do |category| %>
         <tr class="even:bg-blue-100 hover:bg-gray-200">
-          <td class="p-2"><%= link_to category.name, edit_category_path(category) %></td>
+          <td class="p-2"><%= link_to category.name, category_path(category) %></td>
         </tr>
         <% end %>
       </tbody>
