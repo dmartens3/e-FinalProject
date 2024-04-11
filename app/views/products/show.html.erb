@@ -4,6 +4,17 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
+    <div class="flex flex-row">
+      <% if @product.images.any? %>
+        <% @product.images.each do |image| %>
+          <%= image_tag(image) %>
+        <% end %>
+      <% else %>
+        <p class="text-lg">Missing images!</p>
+      <% end %>
+    </div>
+    
+
     <%= render @product %>
 
     <%= link_to "Edit this product", edit_product_path(@product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>

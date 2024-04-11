@@ -5,4 +5,12 @@
 
   <%= link_to "Show this product", @product, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
   <%= link_to "Back to products", products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+
+  <% if @product.images.any? %>
+    <% @product.images.each do |image| %>
+      <%= image_tag(image) %>
+    <% end %>
+  <% else %>
+    <p class="text-lg">Missing images!</p>
+  <% end %>
 </div>
