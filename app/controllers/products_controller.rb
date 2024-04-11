@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
 
+  def show_by_category
+    @category = Category.find(params[:category_id])
+    @products = @category.products
+  end
+
   # GET /products or /products.json
   def index
     @products = Product.all

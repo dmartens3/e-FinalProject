@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/admin'
   get 'home/user'
+  
+  # Allow a route to find all products of a certain category
+  get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
