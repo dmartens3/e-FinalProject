@@ -1,8 +1,31 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+
+  <div>
+    <table class="text-left mx-5">
+      <thead>
+        <tr class="bg-green-200">
+          <th class="p-2">Product Name:</th>
+          <th class="p-2">Customer Email:</th>
+          <th class="p-2">Quantity:</th>
+          <th class="p-2">Base Cost:</th>
+          <th class="p-2">Tax Paid:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.sales.each do |sale| %>
+        <tr class="even:bg-blue-100 hover:bg-gray-200">
+          <td class="p-2"><%= link_to sale.product.name, sale_path(sale) %></td>
+          <td class="p-2"><%= link_to sale.order.user.email, sale_path(sale) %></td>
+          <td class="p-2"><%= link_to sale.quantity, sale_path(sale) %></td>
+          <td class="p-2">$<%= link_to sale.cost, sale_path(sale) %></td>
+          <td class="p-2">$<%= link_to sale.tax, sale_path(sale) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 
     <%= render @order %>
 

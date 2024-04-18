@@ -1,18 +1,24 @@
 <div id="<%= dom_id order %>">
-  <p class="my-5">
+  <p class="my-5 rounded-lg py-2 px-3 bg-blue-100 inline-block ">
     <strong class="block font-medium mb-1">Status:</strong>
-    <%= order.status_id %>
+    <%= order.status.name %>
   </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= order.user_id %>
-  </p>
-
-  <p class="my-5">
+  <p class="my-5 rounded-lg py-2 px-3 bg-blue-100 inline-block ">
     <strong class="block font-medium mb-1">Total:</strong>
     <%= order.total %>
   </p>
+
+  <p class="my-5 rounded-lg py-2 px-3 bg-blue-100 block ">
+    <strong class="block font-medium mb-1">User Email:</strong>
+    <%= order.user.email %>
+    <strong class="block font-medium mb-1">User Address:</strong>
+    <%= order.user.address %>
+    <%= order.user.city %>
+    <%= order.user.province.name %>
+    <%= order.user.postal_code %>
+  </p>
+
 
   <% if action_name != "show" %>
     <%= link_to "Show this order", order, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
