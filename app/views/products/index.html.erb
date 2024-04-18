@@ -1,5 +1,11 @@
 <div class="w-full m-5">
   <div class="flex justify-between items-center">
+    <%= form_tag(products_path, method: "get") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search by product name" %>
+      <%= select_tag :category, options_for_select(@categories.map { |c| [c.name, c.id] }, params[:category]), prompt: "Select category", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      <%= submit_tag "Search", name: nil, class: "rounded-lg mr-10 py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <% end %>
+
     <h1 class="font-bold text-4xl">Products</h1>
     <% if admin_signed_in? %>
       <%= link_to "New product", new_product_path, class: "rounded-lg mr-10 py-3 px-5 bg-blue-600 text-white block font-medium" %>
@@ -34,6 +40,9 @@
         </tr>
         <% end %>
       </tbody>
+      <div class="rounded-lg mr-10 my-3 py-3 px-5 bg-gray-700 text-white block font-medium">
+        <%= paginate @products %>
+      </div>
     </table>
   </div>
 </div>
