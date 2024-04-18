@@ -4,11 +4,31 @@
   <% end %>
 
   <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Orders</h1>
-    <%= link_to "New order", new_order_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <h1 class="font-bold text-4xl m-5">Orders</h1>
+    <%= link_to "New order", new_order_path, class: "m-5 rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="orders" class="min-w-full">
-    <%= render @orders %>
+  <div>
+    <table class="text-left mx-5">
+      <thead>
+        <tr class="bg-green-200">
+          <th class="p-2">Order ID:</th>
+          <th class="p-2">Customer Email:</th>
+          <th class="p-2">Status:</th>
+          <th class="p-2">Total:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+        <tr class="even:bg-blue-100 hover:bg-gray-200">
+          <td class="p-2"><%= link_to order.id, order_path(order) %></td>
+          <td class="p-2"><%= link_to order.user.email, order_path(order) %></td>
+          <td class="p-2"><%= link_to order.status.name, order_path(order) %></td>
+          <td class="p-2"><%= link_to order.total, order_path(order) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+
 </div>
