@@ -43,7 +43,7 @@
                   <% end %>
               </li>
               <li class="shadow border rounded mr-4">
-                  <%= link_to destroy_admin_session_path, method: :delete, data: { turbo_method: :delete }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                  <%= link_to destroy_admin_session_path, method: :delete, data: { "turbo_method": :delete, "turbo-confirm": "Are you sure you want to sign out?" }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'ban', class: 'mr-1') %> <span class="hidden md:inline-block">Sign Out</span>
                   <% end %>
               </li>
@@ -69,7 +69,7 @@
                 <% end %>
             </li>
               <li class="shadow border rounded mr-4">
-                  <%= link_to destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                  <%= link_to destroy_user_session_path, method: :delete, data: { "turbo_method": :delete, "turbo-confirm": "Are you sure you want to sign out?" }, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'ban', class: 'mr-1') %> <span class="hidden md:inline-block">Sign Out</span>
                   <% end %>
               </li>
