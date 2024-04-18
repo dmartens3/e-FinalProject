@@ -8,8 +8,8 @@
       <ul class="flex flex-row text-white pl-6 justify-end">
           <% if admin_signed_in? %>
               <li class="shadow border rounded mr-4">
-                  <%= link_to home_admin_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
-                      <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="md:inline-block">Admin Home</span>
+                  <%= link_to root_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="md:inline-block">Home</span>
                   <% end %>
               </li>
               <li class="shadow border rounded mr-4">
@@ -49,7 +49,7 @@
               </li>
           <% elsif user_signed_in? %>
               <li class="shadow border rounded mr-4">
-                  <%= link_to home_user_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                  <%= link_to root_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="hidden md:inline-block">Home</span>
                   <% end %>
               </li>
