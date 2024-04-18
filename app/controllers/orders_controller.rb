@@ -3,9 +3,9 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.joins(:status).where(statuses: { name: 'Paid' })
-    @new_orders = Order.joins(:status).where(statuses: { name: 'New' })
-    @old_orders = Order.joins(:status).where(statuses: { name: 'Shipped' })
+    @orders = Order.joins(:status).where(statuses: { name: 'Paid' }).order(created_at: :asc)
+    @new_orders = Order.joins(:status).where(statuses: { name: 'New' }).order(created_at: :asc)
+    @old_orders = Order.joins(:status).where(statuses: { name: 'Shipped' }).order(created_at: :asc)
   end
 
   # GET /orders/1 or /orders/1.json
