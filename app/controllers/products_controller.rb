@@ -1,10 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
-  before_action :authenticate_user!, only: [:add_to_cart]
+  
   before_action :set_product, only: %i[ show edit update destroy ]
-
-  def add_to_cart
-  end
 
   def show_by_category
     @category = Category.find(params[:category_id])

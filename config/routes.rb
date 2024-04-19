@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'cart/add_to_cart'
+  get 'cart/show'
   resources :sales
   resources :orders
   resources :statuses
@@ -22,6 +24,9 @@ Rails.application.routes.draw do
   
   # Allow a route to find all products of a certain category
   get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
+  
+  post '/add_to_cart', to: 'cart#add_to_cart', as: 'add_to_cart'
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
