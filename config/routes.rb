@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-  get 'cart/add_to_cart'
-  get 'cart/show'
+
+  patch 'cart/update_quantity', to: 'cart#update_quantity', as: :update_quantity_cart
+  delete 'cart/remove_from_cart', to: 'cart#remove_from_cart', as: :remove_from_cart
+  # Allow a route to find all products of a certain category
+  get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
+  get '/cart', to: 'cart#show', as: 'cart'
+  post '/add_to_cart', to: 'cart#add_to_cart', as: 'add_to_cart'
+
   resources :sales
   resources :orders
   resources :statuses
@@ -16,16 +22,8 @@ Rails.application.routes.draw do
         sessions: 'user/sessions',
         registrations: 'user/registrations'
       }
-
-
-  get 'home/index'
-  get 'home/admin'
-  get 'home/user'
   
-  # Allow a route to find all products of a certain category
-  get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
-  get '/cart', to: 'cart#show', as: 'cart'
-  post '/add_to_cart', to: 'cart#add_to_cart', as: 'add_to_cart'
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

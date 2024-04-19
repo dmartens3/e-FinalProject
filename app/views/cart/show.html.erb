@@ -1,6 +1,7 @@
 <div class="flex flex-col">
-  <div>
-    <h1 class="m-4 rounded-lg py-3 px-5 bg-blue-700 inline-block text-2xl text-white shadow-xl">Shopping Cart</h1>
+  <div class="flex flex-row">
+    <h1 class="m-4 rounded-lg py-3 px-5 bg-gray-700 inline-block text-2xl text-white shadow-xl">Shopping Cart</h1>
+    <%= button_to "Checkout", cart_path, class: "m-4 rounded-lg py-3 px-5 bg-blue-700 inline-block text-2xl text-white shadow-xl hover:bg-blue-600" %>
   </div>
 
   <div class="mx-4 w-full">
@@ -11,15 +12,25 @@
           <th class="p-2">Total:</th>
           <th class="p-2"></th>
           <th class="p-2">Name:</th>
+          <th class="p-2"></th>
         </tr>
       </thead>
       <tbody>
         <% @cart_items.each do |product_id, cart_item| %>
         <tr class="even:bg-blue-100 hover:bg-gray-200">
-          <td class="p-2"><%= cart_item[:quantity] %></td>
+          <td class="p-2">
+            <%= form_tag(update_quantity_cart_path(product_id: cart_item[:product].id), method: :patch) do %>
+              <%= number_field_tag "quantity", cart_item[:quantity], min: 1, class: "inline-block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-1 ml-1 w-20" %>
+              <%= hidden_field_tag :product_id, cart_item[:product].id %>
+              <%= submit_tag "Update", class: "m-1 rounded-lg py-2 px-3 bg-green-600 inline-block text-lg text-white shadow-xl" %>
+            <% end %>
+          </td>
           <td class="p-2"><%= number_to_currency(cart_item[:product].price * cart_item[:quantity]) %></td>
           <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb)) : 'Missing image!' %></td>
           <td class="p-2"><%= link_to cart_item[:product].name, product_path(cart_item[:product]) %></td>
+          <td class="p-2">
+            <%= button_to "Remove", remove_from_cart_path(product_id: cart_item[:product].id), method: :delete, class: "m-1 rounded-lg py-2 px-3 bg-red-600 inline-block text-lg text-white shadow-xl" %>
+          </td>
         </tr>
         <% end %>
       </tbody>
