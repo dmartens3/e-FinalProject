@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'checkout/create'
+  get 'checkout/success'
+  get 'checkout/cancel'
 
   # Allow a route to find all products of a certain category
   get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
