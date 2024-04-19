@@ -1,4 +1,5 @@
 class StatusesController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_status, only: %i[ show edit update destroy ]
 
   # GET /statuses or /statuses.json

@@ -1,4 +1,5 @@
 class SalesController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_sale, only: %i[ show edit update destroy ]
 
   # GET /sales or /sales.json

@@ -1,4 +1,5 @@
 class ProvincesController < ApplicationController
+  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_province, only: %i[ show edit update destroy ]
 
   # GET /provinces or /provinces.json
