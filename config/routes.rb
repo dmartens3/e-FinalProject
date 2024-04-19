@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   
   # Allow a route to find all products of a certain category
   get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
-  
+  get '/cart', to: 'cart#show', as: 'cart'
   post '/add_to_cart', to: 'cart#add_to_cart', as: 'add_to_cart'
 
 

@@ -49,6 +49,11 @@
               </li>
           <% elsif user_signed_in? %>
               <li class="shadow border rounded mr-4">
+                  <%= link_to cart_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
+                      <%= icon('fa-solid', 'shopping-cart', class: 'mr-1') %> <span class="hidden md:inline-block">Cart</span>
+                  <% end %>
+              </li>
+              <li class="shadow border rounded mr-4">
                   <%= link_to root_path, class: "block px-4 py-2 hover:rounded hover:bg-purple-800" do %>
                       <%= icon('fa-solid', 'home', class: 'mr-1') %> <span class="hidden md:inline-block">Home</span>
                   <% end %>

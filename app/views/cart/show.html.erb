@@ -1,4 +1,29 @@
-<div>
-  <h1 class="font-bold text-4xl">Cart#show</h1>
-  <p>Find me in app/views/cart/show.html.erb</p>
+<div class="flex flex-col">
+  <div>
+    <h1 class="m-4 rounded-lg py-3 px-5 bg-blue-700 inline-block text-2xl text-white shadow-xl">Shopping Cart</h1>
+  </div>
+
+  <div class="mx-4 w-full">
+    <table class="text-left">
+      <thead>
+        <tr class="bg-green-200">
+          <th class="p-2">Quantity:</th>
+          <th class="p-2">Total:</th>
+          <th class="p-2"></th>
+          <th class="p-2">Name:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |product_id, cart_item| %>
+        <tr class="even:bg-blue-100 hover:bg-gray-200">
+          <td class="p-2"><%= cart_item[:quantity] %></td>
+          <td class="p-2"><%= number_to_currency(cart_item[:product].price * cart_item[:quantity]) %></td>
+          <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb)) : 'Missing image!' %></td>
+          <td class="p-2"><%= link_to cart_item[:product].name, product_path(cart_item[:product]) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
 </div>
