@@ -11,7 +11,8 @@
       <% end %>
     </div>
     
-
+    <%= link_to "Add to Cart", product_path(@product), class: "mt-2 rounded-lg py-3 px-5 bg-green-200 inline-block font-large" %>
+      
     <%= render @product %>
 
     <% if admin_signed_in? %>
