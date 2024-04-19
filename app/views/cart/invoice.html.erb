@@ -1,0 +1,51 @@
+<div class="flex flex-col">
+  <div class="flex flex-row">
+    <h1 class="m-4 rounded-lg py-3 px-5 bg-gray-700 inline-block text-2xl text-white shadow-xl">Invoice</h1>
+    <%= link_to "Proceed to payment", checkout_path, class: "m-4 rounded-lg py-3 px-5 bg-blue-700 inline-block text-2xl text-white shadow-xl hover:bg-blue-500" %>
+  </div>
+  <div class="flex flex-row items-center">
+    <h1 class="mx-4 mb-4 rounded-lg py-3 px-5 bg-green-700 inline-block text-2xl text-white shadow-xl">Base total: <%= number_to_currency(@base_total) %></h1>
+    <p class="text-2xl mb-4">x</p>
+      <% if @user_province.pst != 0.0 %>
+        <h1 class="mx-4 mb-4 rounded-lg py-3 px-5 bg-green-700 inline-block text-2xl text-white shadow-xl">
+          PST: <%= @user_province.pst * 100 %>%
+        </h1>
+      <% end %>
+      <% if @user_province.gst != 0.0 %>
+        <h1 class="mx-4 mb-4 rounded-lg py-3 px-5 bg-green-700 inline-block text-2xl text-white shadow-xl">
+          GST: <%= @user_province.gst * 100 %>%
+        </h1>
+      <% end %>
+      <% if @user_province.hst != 0.0 %>
+        <h1 class="mx-4 mb-4 rounded-lg py-3 px-5 bg-green-700 inline-block text-2xl text-white shadow-xl">
+          HST: <%= @user_province.hst * 100 %>%
+        </h1>
+      <% end %>
+    <p class="text-2xl mb-4">=</p>
+    <h1 class="mx-4 mb-4 rounded-lg py-3 px-5 bg-green-700 inline-block text-2xl text-white shadow-xl">Total: <%= number_to_currency(@total) %></h1>
+  </div>
+
+  <div class="mx-4 w-full">
+    <table class="text-left">
+      <thead>
+        <tr class="bg-green-200">
+          <th class="p-2">Quantity:</th>
+          <th class="p-2">Total:</th>
+          <th class="p-2"></th>
+          <th class="p-2">Name:</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart_items.each do |product_id, cart_item| %>
+        <tr class="even:bg-blue-100 hover:bg-gray-200">
+          <td class="p-2"><%= cart_item[:quantity] %></td>
+          <td class="p-2"><%= number_to_currency(cart_item[:product].price * cart_item[:quantity]) %></td>
+          <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb)) : 'Missing image!' %></td>
+          <td class="p-2"><%= cart_item[:product].name %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>
