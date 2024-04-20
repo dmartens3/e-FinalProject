@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  get 'checkout/create'
-  get 'checkout/success'
-  get 'checkout/cancel'
+  scope "/checkout" do 
+    post "create", to: "checkout#create", as: "checkout_create"
+    get "success", to: "checkout#success", as: "checkout_success"
+    get "cancel", to: "checkout#cancel", as: "checkout_cancel"
+  end# scope
 
   # Allow a route to find all products of a certain category
   get '/products/category/:category_id', to: 'products#show_by_category', as: 'products_by_category'
   # Manually add routes for all the cart junk since we need to use session
   get '/cart', to: 'cart#show', as: 'cart'
   post '/add_to_cart', to: 'cart#add_to_cart', as: 'add_to_cart'
-  get '/cart/invoice', to: 'cart#invoice', as: 'checkout'
+  get '/cart/invoice', to: 'cart#invoice', as: 'see_invoice'
   patch 'cart/update_quantity', to: 'cart#update_quantity', as: :update_quantity_cart
   delete 'cart/remove_from_cart', to: 'cart#remove_from_cart', as: :remove_from_cart
 
