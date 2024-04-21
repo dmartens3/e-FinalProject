@@ -11,7 +11,7 @@
       <% end %>
     </div>
 
-    <% if user_signed_in? %>
+    <% if !admin_signed_in? %>
       <div class="mt-2 rounded-lg py-3 px-5 bg-green-200 inline-block font-large shadow-xl">
         <%= form_with(url: add_to_cart_path, method: :post) do |form| %>
           <%= form.hidden_field :product_id, value: @product.id %>
