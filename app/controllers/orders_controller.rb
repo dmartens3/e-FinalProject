@@ -1,12 +1,12 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, only: %i[new edit create update destroy]
+  before_action :set_order, only: %i[show edit update destroy]
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.joins(:status).where(statuses: { name: 'Paid' }).order(created_at: :asc)
-    @new_orders = Order.joins(:status).where(statuses: { name: 'New' }).order(created_at: :asc)
-    @old_orders = Order.joins(:status).where(statuses: { name: 'Shipped' }).order(created_at: :asc)
+    @orders = Order.joins(:status).where(statuses: { name: "Paid" }).order(created_at: :asc)
+    @new_orders = Order.joins(:status).where(statuses: { name: "New" }).order(created_at: :asc)
+    @old_orders = Order.joins(:status).where(statuses: { name: "Shipped" }).order(created_at: :asc)
   end
 
   # GET /orders/1 or /orders/1.json
@@ -20,8 +20,7 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /orders or /orders.json
   def create
@@ -62,13 +61,14 @@ class OrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_order
-      @order = Order.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def order_params
-      params.require(:order).permit(:status_id, :user_id, :total)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_order
+    @order = Order.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def order_params
+    params.require(:order).permit(:status_id, :user_id, :total)
+  end
 end

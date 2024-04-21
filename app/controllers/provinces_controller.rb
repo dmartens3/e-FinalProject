@@ -1,6 +1,6 @@
 class ProvincesController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_province, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, only: %i[new edit create update destroy]
+  before_action :set_province, only: %i[show edit update destroy]
 
   # GET /provinces or /provinces.json
   def index
@@ -8,8 +8,7 @@ class ProvincesController < ApplicationController
   end
 
   # GET /provinces/1 or /provinces/1.json
-  def show
-  end
+  def show; end
 
   # GET /provinces/new
   def new
@@ -17,8 +16,7 @@ class ProvincesController < ApplicationController
   end
 
   # GET /provinces/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /provinces or /provinces.json
   def create
@@ -26,7 +24,9 @@ class ProvincesController < ApplicationController
 
     respond_to do |format|
       if @province.save
-        format.html { redirect_to province_url(@province), notice: "Province was successfully created." }
+        format.html do
+          redirect_to province_url(@province), notice: "Province was successfully created."
+        end
         format.json { render :show, status: :created, location: @province }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,9 @@ class ProvincesController < ApplicationController
   def update
     respond_to do |format|
       if @province.update(province_params)
-        format.html { redirect_to province_url(@province), notice: "Province was successfully updated." }
+        format.html do
+          redirect_to province_url(@province), notice: "Province was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @province }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -59,13 +61,14 @@ class ProvincesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_province
-      @province = Province.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def province_params
-      params.require(:province).permit(:name, :code, :gst, :pst, :hst)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_province
+    @province = Province.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def province_params
+    params.require(:province).permit(:name, :code, :gst, :pst, :hst)
+  end
 end

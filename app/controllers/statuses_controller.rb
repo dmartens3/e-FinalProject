@@ -1,6 +1,6 @@
 class StatusesController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_status, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, only: %i[new edit create update destroy]
+  before_action :set_status, only: %i[show edit update destroy]
 
   # GET /statuses or /statuses.json
   def index
@@ -8,8 +8,7 @@ class StatusesController < ApplicationController
   end
 
   # GET /statuses/1 or /statuses/1.json
-  def show
-  end
+  def show; end
 
   # GET /statuses/new
   def new
@@ -17,8 +16,7 @@ class StatusesController < ApplicationController
   end
 
   # GET /statuses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /statuses or /statuses.json
   def create
@@ -59,13 +57,14 @@ class StatusesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_status
-      @status = Status.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def status_params
-      params.require(:status).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_status
+    @status = Status.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def status_params
+    params.require(:status).permit(:name)
+  end
 end

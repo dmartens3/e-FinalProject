@@ -7,9 +7,7 @@ class CheckoutController < ApplicationController
     @user = current_user
     @user_province = Province.find(@user.province_id)
 
-    if cart_item_ids.length == 0
-      redirect_to cart_path, alert: "You cannot checkout with an empty cart!"
-    end
+    redirect_to cart_path, alert: "You cannot checkout with an empty cart!" if cart_item_ids.empty?
 
     cart_item_ids.each do |product_id|
       if @cart_items[product_id]
@@ -18,7 +16,7 @@ class CheckoutController < ApplicationController
         @cart_items[product_id] = { quantity: 1 }
       end
     end
-    
+
     line_items = []
     total_pst = 0
     total_gst = 0
@@ -35,69 +33,67 @@ class CheckoutController < ApplicationController
       total_hst += (total_amount * @user_province.hst).to_i
 
       line_items << {
-        quantity: quantity,
+        quantity:,
         price_data: {
-          unit_amount: unit_amount,
-          currency: "cad",
+          unit_amount:,
+          currency:     "cad",
           product_data: {
             name: product.name
           }
-        }# price_data: {
-      }# line_items << {
-    end# @cart_item.each do |item|
+        } # price_data: {
+      } # line_items << {
+    end
 
     if total_pst != 0
       line_items << {
-        quantity: 1,
+        quantity:   1,
         price_data: {
-          unit_amount: total_pst,
-          currency: "cad",
+          unit_amount:  total_pst,
+          currency:     "cad",
           product_data: {
             name: "PST"
           }
-        }# price_data: {
-      }# line_items << {
-    end# if total_pst != 0
+        } # price_data: {
+      } # line_items << {
+    end
 
     if total_gst != 0
       line_items << {
-        quantity: 1,
+        quantity:   1,
         price_data: {
-          unit_amount: total_gst,
-          currency: "cad",
+          unit_amount:  total_gst,
+          currency:     "cad",
           product_data: {
             name: "GST"
           }
-        }# price_data: {
-      }# line_items << {
-    end# if total_gst != 0
+        } # price_data: {
+      } # line_items << {
+    end
 
     if total_hst != 0
       line_items << {
-        quantity: 1,
+        quantity:   1,
         price_data: {
-          unit_amount: total_hst,
-          currency: "cad",
+          unit_amount:  total_hst,
+          currency:     "cad",
           product_data: {
             name: "HST"
           }
-        }# price_data: {
-      }# line_items << {
-    end# if total_hst != 0
+        } # price_data: {
+      } # line_items << {
+    end
 
-    
     @session = Stripe::Checkout::Session.create(
-      customer_email: @user.email,
+      customer_email:       @user.email,
       payment_method_types: ["card"],
-      success_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: checkout_cancel_url,
-      mode: "payment",
-      line_items: line_items
-    )# @session = Stripe::Checkout::Session.create(
-    
-    redirect_to @session.url, allow_other_host: true
+      success_url:          "#{checkout_success_url}?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url:           checkout_cancel_url,
+      mode:                 "payment",
+      line_items:
+    ) # @session = Stripe::Checkout::Session.create(
 
-  end# create
+    redirect_to @session.url, allow_other_host: true
+  end
 
   def success
     # payment has been recieved
@@ -118,11 +114,12 @@ class CheckoutController < ApplicationController
         @cart_items[product_id][:quantity] += 1
       else
         product = Product.find(product_id)
-        @cart_items[product_id] = { product: product, quantity: 1 }
+        @cart_items[product_id] = { product:, quantity: 1 }
       end
     end
 
-    order = Order.create(status_id: 1, user_id: @user.id, stripe_payment_id: @session_id, total: 0.0)
+    order = Order.create(status_id: 1, user_id: @user.id, stripe_payment_id: @session_id,
+                         total: 0.0)
 
     @cart_items.each do |product_id, cart_item|
       quantity = cart_item[:quantity]
@@ -137,16 +134,16 @@ class CheckoutController < ApplicationController
       decimal_tax_paid = tax_paid / 100.0
       @total = @total + cost + decimal_tax_paid
 
-      sale = Sale.create(quantity: quantity, cost: cost, tax: decimal_tax_paid, product_id: product_id, order_id: order.id)
-    end# @cart_items.each do |product_id, cart_item|
+      Sale.create(quantity:, cost:, tax: decimal_tax_paid,
+                  product_id:, order_id: order.id)
+    end
 
-    if @payment_status == 'paid'
+    if @payment_status == "paid"
       order.update(status_id: 2, total: @total)
       order.save
     end
-    
-    session[:cart] = []
 
+    session[:cart] = []
   end
 
   def cancel

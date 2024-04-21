@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
-  before_action :set_sale, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, only: %i[new edit create update destroy]
+  before_action :set_sale, only: %i[show edit update destroy]
 
   # GET /sales or /sales.json
   def index
@@ -8,8 +8,7 @@ class SalesController < ApplicationController
   end
 
   # GET /sales/1 or /sales/1.json
-  def show
-  end
+  def show; end
 
   # GET /sales/new
   def new
@@ -17,8 +16,7 @@ class SalesController < ApplicationController
   end
 
   # GET /sales/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /sales or /sales.json
   def create
@@ -59,13 +57,14 @@ class SalesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_sale
-      @sale = Sale.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def sale_params
-      params.require(:sale).permit(:quantity, :cost, :tax, :product_id, :order_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_sale
+    @sale = Sale.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def sale_params
+    params.require(:sale).permit(:quantity, :cost, :tax, :product_id, :order_id)
+  end
 end

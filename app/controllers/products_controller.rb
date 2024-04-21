@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_action :authenticate_admin!, only: [:new, :edit, :create, :update, :destroy]
-  
-  before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, only: %i[new edit create update destroy]
+
+  before_action :set_product, only: %i[show edit update destroy]
 
   def show_by_category
     @category = Category.find(params[:category_id])
@@ -10,18 +10,15 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-
     @categories = Category.all
     @products = Product.includes(:category)
     @products = @products.where("name LIKE ?", "%#{params[:search]}%") if params[:search].present?
     @products = @products.where(category_id: params[:category]) if params[:category].present?
     @products = @products.page(params[:page]).per(5)
-
   end
 
   # GET /products/1 or /products/1.json
-  def show
-  end
+  def show; end
 
   # GET /products/new
   def new
@@ -29,8 +26,7 @@ class ProductsController < ApplicationController
   end
 
   # GET /products/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /products or /products.json
   def create
@@ -38,7 +34,9 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: "Product was successfully created." }
+        format.html do
+          redirect_to product_url(@product), notice: "Product was successfully created."
+        end
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,15 +49,15 @@ class ProductsController < ApplicationController
   def update
     respond_to do |format|
       # This is to prevent updates from deleting old images
-      if @product.update(product_params.reject { |p| p['images']})
+      if @product.update(product_params.reject { |p| p["images"] })
 
-        if product_params['images']
-          product_params['images'].each do |image|
-            @product.images.attach(image)
-          end
+        product_params["images"]&.each do |image|
+          @product.images.attach(image)
         end
 
-        format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
+        format.html do
+          redirect_to product_url(@product), notice: "Product was successfully updated."
+        end
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -79,13 +77,14 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def product_params
-      params.require(:product).permit(:name, :description, :price, :category_id, images: [])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def product_params
+    params.require(:product).permit(:name, :description, :price, :category_id, images: [])
+  end
 end

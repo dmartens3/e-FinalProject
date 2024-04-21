@@ -1,10 +1,7 @@
 class HomeController < ApplicationController
-  def index
-  end
+  def index; end
 
-  def admin
-  end
+  def admin; end
 
-  def user
-  end
+  def user; end
 end
