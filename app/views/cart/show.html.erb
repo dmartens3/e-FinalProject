@@ -26,7 +26,7 @@
             <% end %>
           </td>
           <td class="p-2"><%= number_to_currency(cart_item[:product].price * cart_item[:quantity]) %></td>
-          <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb)) : 'Missing image!' %></td>
+          <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb), alt: cart_item[:product].name) : 'Missing image!' %></td>
           <td class="p-2"><%= link_to cart_item[:product].name, product_path(cart_item[:product]) %></td>
           <td class="p-2">
             <%= button_to "Remove", remove_from_cart_path(product_id: cart_item[:product].id), method: :delete, class: "m-1 rounded-lg py-2 px-3 bg-red-600 inline-block text-lg text-white shadow-xl" %>

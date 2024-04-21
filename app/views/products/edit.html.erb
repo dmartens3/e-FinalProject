@@ -8,7 +8,7 @@
 
   <% if @product.images.any? %>
     <% @product.images.each do |image| %>
-      <%= image_tag(image) %>
+      <%= image_tag(image, alt: @product.name) %>
     <% end %>
   <% else %>
     <p class="text-lg">Missing images!</p>

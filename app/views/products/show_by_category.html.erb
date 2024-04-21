@@ -20,7 +20,7 @@
       <tbody>
         <% @products.each do |product| %>
         <tr class="even:bg-blue-100 hover:bg-gray-200">
-          <td class="p-2 h-24 w-24 shrink-0"><%= product.images.any? ? image_tag(product.images.first.variant(:thumb)) : 'Missing image!' %></td>
+          <td class="p-2 h-24 w-24 shrink-0"><%= product.images.any? ? image_tag(product.images.first.variant(:thumb), alt: product.name) : 'Missing image!' %></td>
           <td class="p-2"><%= link_to product.name, product_path(product) %></td>
           <td class="p-2">$<%= link_to product.price, product_path(product) %></td>
           <td class="p-2"><%= link_to product.category.name, product_path(product) %></td>

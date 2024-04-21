@@ -39,7 +39,7 @@
         <tr class="even:bg-blue-100 hover:bg-gray-200">
           <td class="p-2"><%= cart_item[:quantity] %></td>
           <td class="p-2"><%= number_to_currency(cart_item[:product].price * cart_item[:quantity]) %></td>
-          <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb)) : 'Missing image!' %></td>
+          <td class="p-2 h-24 w-24 shrink-0"><%= cart_item[:product].images.any? ? image_tag(cart_item[:product].images.first.variant(:thumb), alt: cart_item[:product].name) : 'Missing image!' %></td>
           <td class="p-2"><%= cart_item[:product].name %></td>
         </tr>
         <% end %>
