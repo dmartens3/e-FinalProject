@@ -9,10 +9,11 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <script src="https://js.stripe.com/v3"></script>
   </head>
 
   <body>
-    <main class="flex flex-col w-full">
+    <main class="flex flex-col w-full min-h-screen">
       
       <%= render "layouts/navbar"%>
 
@@ -23,7 +24,11 @@
         <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="alert"><%= alert %></p>
       <% end %>
 
-      <%= yield %>
+      <div class="flex-grow">
+        <%= yield %>
+      </div>
+      
+      <%= render "layouts/footer"%>
     </main>
   </body>
 </html>

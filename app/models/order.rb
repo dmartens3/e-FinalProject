@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
   belongs_to :status
   belongs_to :user
-  has_many :sales
+  has_many :sales, dependent: :destroy
 end

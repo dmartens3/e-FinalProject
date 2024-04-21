@@ -1,5 +1,31 @@
 dannyland20@DESKTOP-AVQQQA1:~/TestingRuby/testRails/e-FinalProject$ rails routes
                                   Prefix Verb   URI Pattern                                                                                       Controller#Action
+                         payment_proceed GET    /payment/proceed(.:format)                                                                        payment#proceed
+                         checkout_create POST   /checkout/create(.:format)                                                                        checkout#create
+                        checkout_success GET    /checkout/success(.:format)                                                                       checkout#success
+                         checkout_cancel GET    /checkout/cancel(.:format)                                                                        checkout#cancel
+                    products_by_category GET    /products/category/:category_id(.:format)                                                         products#show_by_category
+                                    cart GET    /cart(.:format)                                                                                   cart#show
+                             add_to_cart POST   /add_to_cart(.:format)                                                                            cart#add_to_cart
+                             see_invoice GET    /cart/invoice(.:format)                                                                           cart#invoice
+                    update_quantity_cart PATCH  /cart/update_quantity(.:format)                                                                   cart#update_quantity
+                        remove_from_cart DELETE /cart/remove_from_cart(.:format)                                                                  cart#remove_from_cart
+                                   sales GET    /sales(.:format)                                                                                  sales#index
+                                         POST   /sales(.:format)                                                                                  sales#create
+                                new_sale GET    /sales/new(.:format)                                                                              sales#new
+                               edit_sale GET    /sales/:id/edit(.:format)                                                                         sales#edit
+                                    sale GET    /sales/:id(.:format)                                                                              sales#show
+                                         PATCH  /sales/:id(.:format)                                                                              sales#update
+                                         PUT    /sales/:id(.:format)                                                                              sales#update
+                                         DELETE /sales/:id(.:format)                                                                              sales#destroy
+                                  orders GET    /orders(.:format)                                                                                 orders#index
+                                         POST   /orders(.:format)                                                                                 orders#create
+                               new_order GET    /orders/new(.:format)                                                                             orders#new
+                              edit_order GET    /orders/:id/edit(.:format)                                                                        orders#edit
+                                   order GET    /orders/:id(.:format)                                                                             orders#show
+                                         PATCH  /orders/:id(.:format)                                                                             orders#update
+                                         PUT    /orders/:id(.:format)                                                                             orders#update
+                                         DELETE /orders/:id(.:format)                                                                             orders#destroy
                                 statuses GET    /statuses(.:format)                                                                               statuses#index
                                          POST   /statuses(.:format)                                                                               statuses#create
                               new_status GET    /statuses/new(.:format)                                                                           statuses#new
@@ -62,10 +88,6 @@ dannyland20@DESKTOP-AVQQQA1:~/TestingRuby/testRails/e-FinalProject$ rails routes
                                          PUT    /users(.:format)                                                                                  user/registrations#update
                                          DELETE /users(.:format)                                                                                  user/registrations#destroy
                                          POST   /users(.:format)                                                                                  user/registrations#create
-                              home_index GET    /home/index(.:format)                                                                             home#index
-                              home_admin GET    /home/admin(.:format)                                                                             home#admin
-                               home_user GET    /home/user(.:format)                                                                              home#user
-                    products_by_category GET    /products/category/:category_id(.:format)                                                         products#show_by_category
                       rails_health_check GET    /up(.:format)                                                                                     rails/health#show
                                     root GET    /                                                                                                 products#index
         turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede
@@ -94,3 +116,4 @@ rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/
                       rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/disk#show
                update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#update
                     rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#create
+dannyland20@DESKTOP-AVQQQA1:~/TestingRuby/testRails/e-FinalProject$ 
