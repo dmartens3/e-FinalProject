@@ -10,19 +10,21 @@
         <p class="text-lg">Missing images!</p>
       <% end %>
     </div>
-    
-    <div class="mt-2 rounded-lg py-3 px-5 bg-green-200 inline-block font-large shadow-xl">
-      <%= form_with(url: add_to_cart_path, method: :post) do |form| %>
-        <%= form.hidden_field :product_id, value: @product.id %>
-        <div class="my-3 flex flex-row items-center">
-          <%= form.label :quantity %>
-          <%= form.number_field :quantity, value: 1, min: 1, step: 1, class: "inline-block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 ml-2 w-20" %>
-          <div class="mt-2 shadow-xl border border-gray-400 rounded-lg py-3 px-5 bg-blue-200 inline-block font-large ml-4 w-full hover:bg-blue-300">
-            <%= form.submit 'Add to Cart' %>
+
+    <% if user_signed_in? %>
+      <div class="mt-2 rounded-lg py-3 px-5 bg-green-200 inline-block font-large shadow-xl">
+        <%= form_with(url: add_to_cart_path, method: :post) do |form| %>
+          <%= form.hidden_field :product_id, value: @product.id %>
+          <div class="my-3 flex flex-row items-center">
+            <%= form.label :quantity %>
+            <%= form.number_field :quantity, value: 1, min: 1, step: 1, class: "inline-block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 ml-2 w-20" %>
+            <div class="mt-2 shadow-xl border border-gray-400 rounded-lg py-3 px-5 bg-blue-200 inline-block font-large ml-4 w-full hover:bg-blue-300">
+              <%= form.submit 'Add to Cart' %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
       
     <%= render @product %>
 
