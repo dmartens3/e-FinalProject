@@ -75,3 +75,5 @@ gem "font-awesome-sass", "~> 6.5.1"
 gem 'kaminari'
 gem 'stripe'
 gem 'rack-cors'
+gem 'rubocop'
+gem 'rubocop-rails'
