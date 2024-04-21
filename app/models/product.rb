@@ -7,4 +7,7 @@ class Product < ApplicationRecord
 
   belongs_to :category
   has_many :sales
+
+  validates :name, :description, :price, :category_id, presence: true
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
 end
