@@ -122,7 +122,7 @@ class CheckoutController < ApplicationController
       end
     end
 
-    order = Order.create(status_id: 1, user_id: @user.id, stripe_payment_id: @session_id)
+    order = Order.create(status_id: 1, user_id: @user.id, stripe_payment_id: @session_id, total: 0.0)
 
     @cart_items.each do |product_id, cart_item|
       quantity = cart_item[:quantity]
