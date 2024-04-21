@@ -18,8 +18,8 @@
             <td class="p-2"><%= link_to sale.product.name, sale_path(sale) %></td>
             <td class="p-2"><%= link_to sale.order.user.email, sale_path(sale) %></td>
             <td class="p-2"><%= link_to sale.quantity, sale_path(sale) %></td>
-            <td class="p-2">$<%= link_to sale.cost, sale_path(sale) %></td>
-            <td class="p-2">$<%= link_to sale.tax, sale_path(sale) %></td>
+            <td class="p-2">$<%= link_to number_to_currency(sale.cost), sale_path(sale) %></td>
+            <td class="p-2">$<%= link_to number_to_currency(sale.tax), sale_path(sale) %></td>
           </tr>
           <% end %>
         </tbody>

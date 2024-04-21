@@ -28,7 +28,7 @@
           <td class="p-2"><%= link_to order.id, order_path(order) %></td>
           <td class="p-2"><%= link_to order.user.email, order_path(order) %></td>
           <td class="p-2"><%= link_to order.status.name, order_path(order) %></td>
-          <td class="p-2"><%= link_to order.total, order_path(order) %></td>
+          <td class="p-2"><%= link_to number_to_currency(order.total), order_path(order) %></td>
           <td class="p-2"><%= link_to order.created_at, order_path(order) %></td>
         </tr>
         <% end %>

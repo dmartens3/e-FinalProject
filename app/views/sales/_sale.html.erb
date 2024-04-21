@@ -6,12 +6,12 @@
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Cost:</strong>
-    <%= sale.cost %>
+    <%= number_to_currency(sale.cost) %>
   </p>
 
   <p class="my-5">
     <strong class="block font-medium mb-1">Tax:</strong>
-    <%= sale.tax %>
+    <%= number_to_currency(sale.tax) %>
   </p>
 
   <p class="my-5">
