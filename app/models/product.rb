@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   end
 
   belongs_to :category
-  has_many :sales
+  has_many :sales, dependent: :destroy
 
   validates :name, :description, :price, :category_id, presence: true
   validates :price, numericality: { greater_than_or_equal_to: 0 }
