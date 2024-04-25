@@ -9,8 +9,9 @@
 #   end
 
 categories = Category.pluck(:id)
+num_products_to_add = 120 - Product.count
 
-100.times do
+num_products_to_add.times do
   name = Faker::Commerce.product_name
   description = Faker::Lorem.sentence
   price = Faker::Commerce.price(range: 0..100.0, as_string: false)
